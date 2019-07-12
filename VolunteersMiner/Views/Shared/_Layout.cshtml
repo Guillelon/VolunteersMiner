@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            min-width: 580px; /* suppose you want minimun width of 1000px */
+            width: auto !important; /* Firefox will set width as auto */
+            width: 580px; /* As IE ignores !important it will set width as 1000px; */
+        }
+
+        html, body {
+            height: 100%;
+            min-height: 100%;
+        }
+        
+        .left {
+            float: left;
+        }
+
+        #ft-logo {
+            padding-bottom: 17px;
+        }
+
+        img {
+            height: auto;
+        }
+
+        img {
+            border: 0;
+        }
+        #page-footer h3 {
+            color: #fff;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        h3 {
+            display: block;
+            font-size: 1.17em;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+            font-weight: bold;
+        }
+
+        #page-footer ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        dl, menu, ol, ul {
+            margin: 1em 0;
+        }
+
+        ul, menu, dir {
+            display: block;
+            list-style-type: disc;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+            -webkit-padding-start: 40px;
+        }
+
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+
+        #page-footer ul li a:hover {
+            color: #c92027;
+        }
+
+        #page-footer ul li a {
+            color: #666666;
+            text-decoration: none;
+        }
+
+        a:active, a:hover {
+            outline: 0;
+        }
+
+        button, input[type=submit] {
+            padding-left: 35px;
+            padding-right: 35px;
+            padding-top: 13px;
+            padding-bottom: 13px;
+            border: 1px solid rgba(128,128,128,.24);
+            -moz-border-radius: 9px;
+            -webkit-border-radius: 9px;
+            border-radius: 9px;
+            -moz-background-clip: padding;
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+            color: #f9f1dd;
+            font-size: 25px;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0,0,0,.48);
+            font-size: 13px;
+            width: auto;
+        }
+
+        #footer-contact > ul > li > a {
+            color: #c92027;
+        }
+
+        #footer-industries {
+            width: 193px;
+        }
+
+        #footer-contact {
+            width: 206px;
+        }
+
+        #footer-social {
+            display: block;
+            height: 100%;
+            overflow: hidden;
+        }
+
+            #footer-social li a {
+                display: block;
+                height: 31px;
+                margin: 0 8px 0 0;
+                text-indent: -9999px;
+                width: 31px;
+            }
+
+        #page-footer ul li {
+            line-height: 20px;
+        }
+
+        #footer-social li {
+            float: left;
+        }
+
+        [class ^="icon-"], [class *=" icon-"] {
+            font-family: FontAwesome-imt;
+            font-weight: normal;
+            font-style: normal;
+            text-decoration: inherit;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        #page-footer ul li a:hover {
+            color: #c92027;
+        }
+
+        #footer-social li a:hover {
+            background-position: 0 0;
+        }
+
+        #footer-social li.icon-fb a {
+            background: url(../../Images/icon-facebook.png) no-repeat 0 -31px;
+        }
+
+        #footer-social li.icon-tw a {
+            background: url(../../Images/icon-twitter.png) no-repeat 0 -31px;
+        }
+
+        #footer-social li.icon-gp a {
+            background: url(../../Images/icon-google.png) no-repeat 0 -31px;
+        }
+
+        #footer-social li.icon-in a {
+            background: url(../../Images/icon-in.png) no-repeat 0 -31px;
+        }
+
+
+        #credits {
+            width: 100%;
+            min-height: 56px;
+            background: #1a1c1d;
+            color: #666666;
+            font-size: 13px;
+        }
+
+
+        .clear {
+            clear: both;
+            width: 100%;
+        }
+
+
+        span.copyright {
+            padding-top: 19px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top" id="main-header">
+            <div class="container container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" style="margin-top: 35px;" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand top-logo" id="logo" href="/Home/Index" style="padding-top:25px">
+                        <img id="logoImage" src="/Images/logo.png" class="img-responsive" width="350" height="69" alt="Marea Verde" />
+                    </a>
+                </div>
+                <br />
+                @*<div class="collapse navbar-collapse">
+                    <div class="collapse navbar-collapse">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <ul class="nav navbar-right top-nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" style="color:black" data-toggle="dropdown"><i class="fa fa-user"></i> @User.Identity.Name <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="/Account/ChangePassword"><i class="fa fa-cog fa-fw"></i> Cambiar Contraseña</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Account/LogOff"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <div class="nav navbar-right">
+                                <br />
+                                <a href="/Account/FranchiseSelector" class="btn btn-success">Regístrarse</a>
+                                <a href="/Account/Login" class="btn btn-default">Iniciar Sesión</a>
+                            </div>
+                        }
+                    </div>*@
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
