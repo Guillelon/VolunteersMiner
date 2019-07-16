@@ -1,8 +1,11 @@
-﻿using System;
+﻿using DAL.Model;
+using reCAPTCHA.MVC;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace VolunteersMiner.Controllers
 {
@@ -16,6 +19,15 @@ namespace VolunteersMiner.Controllers
         public ActionResult Poll()
         {
             return View();
+        }
+
+        [HttpPost]
+        [CaptchaValidator]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Poll(Poll model)
+        {
+            return null;
         }
     }
 }

@@ -7,14 +7,14 @@
     .btn-info:focus,
     .btn-info.focus {
         color: #fff;
-        background-color: #C17115;
-        border-color: #C17115;
+        background-color: #37B34A;
+        border-color: #37B34A;
     }
 
     .btn-info:hover {
         color: #fff;
         background-color: #37B34A;
-        border-color: #C17115;
+        border-color: #37B34A;
     }
 
     .btn-info:active,
@@ -35,7 +35,7 @@
         .btn-info.active.focus,
         .open > .dropdown-toggle.btn-info.focus {
             color: #fff;
-            background-color: #B56913;
+            background-color: #37B34A;
             border-color: #37B34A;
         }
 
