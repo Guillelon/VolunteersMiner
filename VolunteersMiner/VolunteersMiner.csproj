@@ -197,6 +197,8 @@
     <Content Include="Images\favIcon.ico" />
     <Content Include="Images\home.jpg" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\success.jpg" />
+    <Content Include="Images\success.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -244,6 +246,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Poll\Index.cshtml" />
     <Content Include="Views\Poll\Create.cshtml" />
+    <Content Include="Views\Poll\SuccessMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

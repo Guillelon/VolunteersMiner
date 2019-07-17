@@ -29,18 +29,12 @@ namespace VolunteersMiner.Controllers
             return View();
         }
 
-        [HttpPost]
-        //[CaptchaValidator]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult Poll(Poll model)
+    
+
+        public ActionResult SuccessMessage()
         {
-            if (ModelState.IsValid)
-            {
-                model.CreatedDate = DateTime.Now;
-                _repo.Add(model);
-            }
-            return null;
+            //ViewBag.Info = TempData["Info"].ToString();
+            return View("SuccessMessage");
         }
     }
 }
