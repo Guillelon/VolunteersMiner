@@ -1,0 +1,33 @@
+﻿@model List<DAL.Model.Poll>
+
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Voluntario</th>
+                <th>Ubicación</th>
+                <th>Tiempo disponible</th>
+                <th>Profesión</th>
+                <th>Tipo de Ayuda</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var poll in Model)
+            {
+                <tr>
+                    <td> @poll.Name, @poll.Email, @poll.Cellphone</td>
+                    <td> @poll.Province - @poll.Area</td>
+                    <td>
+                        @poll.TimeToParticipate @if (poll.OtherTimeToParticipate != null)
+                        {@poll.OtherTimeToParticipate}
+                    </td>
+                    <td>@poll.Profession - @poll.ProfessionInstitution</td>
+                    <td>
+                        @poll.TypeOfHelp @if (poll.OtherTypeOfHelp != null)
+                        {@poll.OtherTypeOfHelp}
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

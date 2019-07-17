@@ -1,30 +1,28 @@
 ﻿using DAL.Model;
 using DAL.Repositories;
-using reCAPTCHA.MVC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-
 namespace VolunteersMiner.Controllers
 {
-    public class HomeController : Controller
+    public class PollController : Controller
     {
         private PollRepository _repo;
-
-        public HomeController()
+        public PollController()
         {
             _repo = new PollRepository();
         }
 
         public ActionResult Index()
         {
-            return View();
+            var all = _repo.GetAll();
+            return View(all);
         }
 
-        public ActionResult Poll()
+        public ActionResult Create()
         {
             return View();
         }
@@ -33,7 +31,7 @@ namespace VolunteersMiner.Controllers
         //[CaptchaValidator]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Poll(Poll model)
+        public ActionResult Create(Poll model)
         {
             if (ModelState.IsValid)
             {

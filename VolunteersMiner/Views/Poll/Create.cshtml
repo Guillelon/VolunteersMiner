@@ -35,12 +35,17 @@
                         <div class="form-group">
                             <label>¿A qué te dedicas?</label>
                             <br />
-                            @Html.DropDownListFor(model => model.Age, VolunteersMiner.Helpers.WhatDoYouDo().Select(option => new SelectListItem
+                            @Html.DropDownListFor(model => model.Profession, VolunteersMiner.Helpers.WhatDoYouDo().Select(option => new SelectListItem
                             {
                                 Text = Html.Raw(option).ToHtmlString(),
                                 Value = option.ToString(),
                                 Selected = false
-                            }), "Seleccionar una opción", new { @class = "form-control" })
+                            }), "Seleccionar una opción", new { @class = "form-control", @id = "professionList" })
+                        </div>
+                        <div class="form-group" id="professionInstitution" hidden>
+                            <label id="institution"></label>
+                            <br />
+                            @Html.TextBoxFor(m => m.ProfessionInstitution, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Provincia</label>
@@ -57,28 +62,38 @@
                         </div>
                         <div class="form-group">
                             <label>Días en qué está interesado en colaborar</label>
-                            @Html.DropDownListFor(model => model.Province, VolunteersMiner.Helpers.GetTimes().Select(option => new SelectListItem
+                            @Html.DropDownListFor(model => model.TimeToParticipate, VolunteersMiner.Helpers.GetTimes().Select(option => new SelectListItem
                            {
                                Text = Html.Raw(option).ToHtmlString(),
                                Value = option.ToString(),
                                Selected = false
-                           }), "Seleccionar una opción", new { @class = "form-control" })
+                           }), "Seleccionar una opción", new { @class = "form-control", @id = "timesList" })
+                        </div>
+                        <div id="otherTime" class="form-group" hidden>
+                            <label>Otro:</label>
+                            @Html.TextBoxFor(m => m.OtherTimeToParticipate, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Tipo de voluntariado en el que está interesado</label>
-                            @Html.DropDownListFor(model => model.Province, VolunteersMiner.Helpers.GetVolunteerType().Select(option => new SelectListItem
+                            @Html.DropDownListFor(model => model.TypeOfHelp, VolunteersMiner.Helpers.GetVolunteerType().Select(option => new SelectListItem
                            {
                                Text = Html.Raw(option).ToHtmlString(),
                                Value = option.ToString(),
                                Selected = false
-                           }), "Seleccionar una opción", new { @class = "form-control" })
+                           }), "Seleccionar una opción", new { @class = "form-control", @id = "volunteerTypeList" })
+                        </div>
+                        <div id="otherVolunteerType" class="form-group" hidden>
+                            <label>Otro:</label>
+                            @Html.TextBoxFor(m => m.OtherTimeToParticipate, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             @Html.Recaptcha()
                             @Html.ValidationMessage("ReCaptcha")
                         </div>
                         <hr />
-                        <input type="submit" class="btn btn-info" value="Aceptar"/>
+                        <div style="text-align:center">
+                            <button type="submit" class="btn btn-info">Aceptar</button>
+                        </div>
                     }
                 </div>
             </div>
@@ -86,3 +101,37 @@
         <div class="col-md-3"></div>
     </div>
 </div>
+
+<script>
+    $('#professionList').change(function () {
+        var val = $("#professionList").val();
+        if (val == '@VolunteersMiner.Helpers.WhatDoYouDo()[0]') {
+            $('#professionInstitution').show();
+            $('#institution').html('Universidad:');
+        }
+        else {
+            $('#professionInstitution').show();
+            $('#institution').html('Empresa:');
+        }
+    })
+
+    $('#timesList').change(function () {
+        var val = $("#timesList").val();
+        if (val == 'Otro') {
+            $('#otherTime').show();
+        }
+        else {
+            $('#otherTime').hide();
+        }
+    });
+
+    $('#volunteerTypeList').change(function () {
+        var val = $("#volunteerTypeList").val();
+        if (val == 'Otro') {
+            $('#otherVolunteerType').show();
+        }
+        else {
+            $('#otherVolunteerType').hide();
+        }
+    })
+</script>

@@ -195,6 +195,8 @@
             padding-top: 19px;
         }
     </style>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
     <header>
@@ -239,8 +241,6 @@
                             </div>
                         }
                     </div>*@
-
-                </div>
             </div>
         </nav>
     </header>
@@ -251,9 +251,5 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
