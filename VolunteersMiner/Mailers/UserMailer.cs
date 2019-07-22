@@ -22,7 +22,7 @@ namespace VolunteersMiner.Mailers
             
             var mail = Populate(x =>
             {
-                x.Subject = poll.Name + ", gracias por tu interés en ayudar.";
+                x.Subject = poll.Name() + ", gracias por tu interés en ayudar.";
                 x.ViewName = "Thanks";
                 x.To.Add(poll.Email);
             });

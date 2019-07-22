@@ -24,7 +24,11 @@
                         @Html.AntiForgeryToken()
                         <div class="form-group">
                             <label>Nombre</label> <span class="required">*</span>
-                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label>Apellido</label> <span class="required">*</span>
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Email</label> <span class="required">*</span>
@@ -46,7 +50,8 @@
                             }), "Seleccionar una edad", new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>¿A qué te dedicas?</label> <span class="required">*</span>
+                            <label>¿A qué te dedicas?</label>
+                            <small>(Opcional)</small>
                             <br />
                             @Html.DropDownListFor(model => model.Profession, VolunteersMiner.Helpers.WhatDoYouDo().Select(option => new SelectListItem
                             {
@@ -56,7 +61,8 @@
                             }), "Seleccionar una opción", new { @class = "form-control", @id = "professionList" })
                         </div>
                         <div class="form-group" id="professionInstitution" hidden>
-                            <label id="institution"></label> <span class="required">*</span>
+                            <label id="institution"></label>
+                            <small>(Opcional)</small>
                             <br />
                             @Html.TextBoxFor(m => m.ProfessionInstitution, new { @class = "form-control" })
                         </div>

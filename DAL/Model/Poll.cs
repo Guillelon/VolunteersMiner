@@ -12,7 +12,9 @@ namespace DAL.Model
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
         [Required]
         public string Email { get; set; }
         public string Cellphone { get; set; }
@@ -33,6 +35,11 @@ namespace DAL.Model
         public Poll()
         {
             CreatedDate = DateTime.Now;
+        }
+
+        public string Name()
+        {
+            return FirstName + " " + LastName;
         }
     }
 }

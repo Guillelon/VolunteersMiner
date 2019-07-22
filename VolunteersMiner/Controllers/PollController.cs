@@ -45,7 +45,7 @@ namespace VolunteersMiner.Controllers
                 {
                     model.CreatedDate = DateTime.Now;
                     _repo.Add(model);
-                    TempData["Info"] = model.Name;
+                    TempData["Info"] = model.Name();
 
                     try
                     {

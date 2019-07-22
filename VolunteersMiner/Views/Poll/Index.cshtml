@@ -14,7 +14,7 @@
             @foreach (var poll in Model)
             {
                 <tr>
-                    <td> @poll.Name, @poll.Email, @poll.Cellphone</td>
+                    <td> @poll.Name(), @poll.Email, @poll.Cellphone</td>
                     <td> @poll.Province - @poll.Area</td>
                     <td>
                         @poll.TimeToParticipate @if (poll.OtherTimeToParticipate != null)

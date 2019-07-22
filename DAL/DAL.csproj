@@ -56,6 +56,10 @@
     <Compile Include="Migrations\201907170016031_changingPolls.Designer.cs">
       <DependentUpon>201907170016031_changingPolls.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907221332346_AddingLastName.cs" />
+    <Compile Include="Migrations\201907221332346_AddingLastName.Designer.cs">
+      <DependentUpon>201907221332346_AddingLastName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Poll.cs" />
     <Compile Include="Model\VolunteersMinerDBContext.cs" />
@@ -72,6 +76,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907170016031_changingPolls.resx">
       <DependentUpon>201907170016031_changingPolls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907221332346_AddingLastName.resx">
+      <DependentUpon>201907221332346_AddingLastName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
