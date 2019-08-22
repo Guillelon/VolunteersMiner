@@ -1,4 +1,6 @@
-
+@{
+    var dto = (DAL.Model.Poll)ViewBag.Data;
+}
 <div bgcolor=#F4F5F8 style=font-family:HelveticaNeueRoman,Helvetica,Arial,Verdana,sans-serif; max-width:500px>
     <table width=100% align=center bgcolor=#F4F5F8>
         <tbody>
@@ -35,7 +37,20 @@
                                             <tr>
                                                 <td style=font-size:12px;padding:20px 25px 50px 25px;color:#000000;font-family:HelveticaNeueRoman,Helvetica,Arial,Verdana,sans-serif>
                                                     <p>
-                                                        Hola, hemos almacenados tus datos y tan pronto tengamos una actividad o necesitemos de tu ayuda, no vamos a dudar en contactarte.
+                                                        Hola @dto.FirstName,
+                                                        <br />
+                                                        <br />
+                                                        Muchas gracias por inscribirte como voluntario de la Marea Verde, nos mantedremos en contacto para infomarte sobre actividades y eventos.
+                                                    </p>
+                                                    <br />
+                                                    <p>
+                                                        Saludos,
+                                                        <br />
+                                                        Equipo Marea Verde.
+                                                        <br />
+                                                        <i>Pasión por un Panamá limpio.</i>
+                                                        <hr />
+                                                        <small>Para más información contactarnos en info@mareaverdepanama.org</small>
                                                     </p>
                                                 </td>
                                             </tr>

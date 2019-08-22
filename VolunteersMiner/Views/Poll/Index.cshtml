@@ -1,6 +1,6 @@
 ﻿@model List<DAL.Model.Poll>
 <div>
-    <table class="table table-bordered">
+    <table id="table" class="table table-bordered">
         <thead>
             <tr>
                 <th>Voluntario</th>
@@ -30,3 +30,9 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    $('#table').DataTable({
+        responsive: true
+    });
+</script>
