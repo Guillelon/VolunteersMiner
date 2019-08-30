@@ -83,7 +83,7 @@
                             @Html.TextBoxFor(m => m.Area, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Días en qué está interesado en colaborar</label> <span class="required">*</span>
+                            <label>Días en qué estás interesado en colaborar</label> <span class="required">*</span>
                             @Html.DropDownListFor(model => model.TimeToParticipate, VolunteersMiner.Helpers.GetTimes().Select(option => new SelectListItem
                            {
                                Text = Html.Raw(option).ToHtmlString(),
@@ -96,7 +96,7 @@
                             @Html.TextBoxFor(m => m.OtherTimeToParticipate, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
-                            <label>Tipo de voluntariado en el que está interesado</label> <span class="required">*</span>
+                            <label>Tipo de voluntariado en el que estás interesado</label> <span class="required">*</span>
                             @Html.DropDownListFor(model => model.TypeOfHelp, VolunteersMiner.Helpers.GetVolunteerType().Select(option => new SelectListItem
                            {
                                Text = Html.Raw(option).ToHtmlString(),

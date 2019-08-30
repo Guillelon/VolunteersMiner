@@ -28,7 +28,8 @@ namespace VolunteersMiner.Mailers
             });
             var client = new SmtpClient("smtp.gmail.com", 587);
             client.EnableSsl = true;
-            client.Credentials = new NetworkCredential("infomareaverde@gmail.com", "bob2019!");
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential("info@zip-cargo.com", "123Zipcargo+");
             client.Send(mail);
         }
     }
