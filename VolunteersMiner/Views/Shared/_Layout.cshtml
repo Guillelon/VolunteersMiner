@@ -216,7 +216,7 @@
                     </a>
                 </div>
                 <br />
-                @*<div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse">
                     <div class="collapse navbar-collapse">
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -224,9 +224,6 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" style="color:black" data-toggle="dropdown"><i class="fa fa-user"></i> @User.Identity.Name <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="/Account/ChangePassword"><i class="fa fa-cog fa-fw"></i> Cambiar Contraseña</a>
-                                        </li>
                                         <li>
                                             <a href="/Account/LogOff"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a>
                                         </li>
@@ -238,11 +235,10 @@
                         {
                             <div class="nav navbar-right">
                                 <br />
-                                <a href="/Account/FranchiseSelector" class="btn btn-success">Regístrarse</a>
                                 <a href="/Account/Login" class="btn btn-default">Iniciar Sesión</a>
                             </div>
                         }
-                    </div>*@
+                    </div>
             </div>
         </nav>
     </header>

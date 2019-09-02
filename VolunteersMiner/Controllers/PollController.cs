@@ -21,6 +21,7 @@ namespace VolunteersMiner.Controllers
             _mailer = new UserMailer();
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             var all = _repo.GetAll();

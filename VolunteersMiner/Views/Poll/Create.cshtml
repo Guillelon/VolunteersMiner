@@ -19,7 +19,7 @@
                             @ViewBag.ErrorMessage
                         </div>
                     }
-                    @using (Html.BeginForm("Create", "Poll", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    @using (Html.BeginForm("Create", "Poll", null, FormMethod.Post, new { @id = "theForm", @class = "form-horizontal", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
                         <div class="form-group">
@@ -114,6 +114,8 @@
                         <hr />
                         <div style="text-align:center">
                             <button type="submit" class="btn btn-info">Aceptar</button>
+                            &nbsp;&nbsp;
+                            <img style="display:none"  id="loading" width="25" height="25" src="~/Images/loading.gif" />
                         </div>
                     }
                 </div>
@@ -128,6 +130,11 @@
         CheckProfession();
         CheckTime();
         CheckVolunteerType();
+
+        $('#theForm').submit(function () {
+            $(':submit', this).attr('disabled', 'disabled');
+            $('#loading').show();
+        });
 
         function CheckProfession() {
             var val = $("#professionList").val();

@@ -29,7 +29,12 @@ namespace VolunteersMiner.Controllers
             return View();
         }
 
-    
+        [Authorize]
+        public ActionResult List()
+        {
+            var list = _repo.GetAll();
+            return View(list);
+        }
 
         public ActionResult SuccessMessage()
         {

@@ -200,6 +200,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\favIcon.ico" />
     <Content Include="Images\home.jpg" />
+    <Content Include="Images\loading.gif" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\success.jpg" />
     <Content Include="Images\success.png" />
@@ -253,6 +254,7 @@
     <Content Include="Views\Poll\SuccessMessage.cshtml" />
     <Content Include="Views\UserMailer\Thanks.cshtml" />
     <Content Include="Views\UserMailer\_Layout.cshtml" />
+    <Content Include="Views\Home\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
