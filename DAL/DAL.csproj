@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\PollDTO.cs" />
     <Compile Include="Migrations\201907122146226_Init.cs" />
     <Compile Include="Migrations\201907122146226_Init.Designer.cs">
       <DependentUpon>201907122146226_Init.cs</DependentUpon>
@@ -59,6 +60,14 @@
     <Compile Include="Migrations\201907221332346_AddingLastName.cs" />
     <Compile Include="Migrations\201907221332346_AddingLastName.Designer.cs">
       <DependentUpon>201907221332346_AddingLastName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909041501028_AddingDonationTypeOfHelpToPoll.cs" />
+    <Compile Include="Migrations\201909041501028_AddingDonationTypeOfHelpToPoll.Designer.cs">
+      <DependentUpon>201909041501028_AddingDonationTypeOfHelpToPoll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909041517117_AddingDonationTypeOfHelpToPoll2.cs" />
+    <Compile Include="Migrations\201909041517117_AddingDonationTypeOfHelpToPoll2.Designer.cs">
+      <DependentUpon>201909041517117_AddingDonationTypeOfHelpToPoll2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Poll.cs" />
@@ -79,6 +88,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907221332346_AddingLastName.resx">
       <DependentUpon>201907221332346_AddingLastName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909041501028_AddingDonationTypeOfHelpToPoll.resx">
+      <DependentUpon>201909041501028_AddingDonationTypeOfHelpToPoll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909041517117_AddingDonationTypeOfHelpToPoll2.resx">
+      <DependentUpon>201909041517117_AddingDonationTypeOfHelpToPoll2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

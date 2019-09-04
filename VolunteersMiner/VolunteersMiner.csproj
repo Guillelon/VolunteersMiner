@@ -202,6 +202,7 @@
     <Content Include="Images\home.jpg" />
     <Content Include="Images\loading.gif" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\MareaVerdeSalida.jpg" />
     <Content Include="Images\success.jpg" />
     <Content Include="Images\success.png" />
     <Content Include="Scripts\bootstrap.js" />

@@ -1,12 +1,52 @@
 ﻿@using reCAPTCHA.MVC
-@model DAL.Model.Poll
+@model DAL.DTOs.PollDTO
 
 <style>
     .required {
         color: red;
     }
-</style>
 
+    .checkbox label:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    .checkbox .cr {
+        position: relative;
+        display: inline-block;
+        border: 1px solid #a9a9a9;
+        border-radius: .25em;
+        width: 1.3em;
+        height: 1.3em;
+        float: left;
+        margin-right: .5em;
+    }
+
+        .checkbox .cr .cr-icon {
+            position: absolute;
+            font-size: .8em;
+            line-height: 0;
+            top: 50%;
+            left: 15%;
+        }
+
+    .checkbox label input[type="checkbox"] {
+        display: none;
+    }
+
+        .checkbox label input[type="checkbox"] + .cr > .cr-icon {
+            opacity: 0;
+        }
+
+        .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon {
+            opacity: 1;
+        }
+
+        .checkbox label input[type="checkbox"]:disabled + .cr {
+            opacity: .5;
+        }
+</style>
 <div>
     <div class="row">
         <div class="col-md-3"></div>
@@ -27,25 +67,25 @@
                         </div>
                         <div class="form-group">
                             <label>Nombre</label> <span class="required">*</span>
-                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.NewPoll.FirstName, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Apellido</label> <span class="required">*</span>
-                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.NewPoll.LastName, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Email</label> <span class="required">*</span>
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.NewPoll.Email, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Celular</label>
                             <small>(Opcional)</small>
-                            @Html.TextBoxFor(m => m.Cellphone, new { @class = "form-control", @type="number" })
+                            @Html.TextBoxFor(m => m.NewPoll.Cellphone, new { @class = "form-control", @type = "number" })
                         </div>
                         <div class="form-group">
                             <label>Edad</label> <span class="required">*</span>
                             <br />
-                            @Html.DropDownListFor(model => model.Age, VolunteersMiner.Helpers.GetAges().Select(option => new SelectListItem
+                            @Html.DropDownListFor(model => model.NewPoll.Age, VolunteersMiner.Helpers.GetAges().Select(option => new SelectListItem
                             {
                                 Text = Html.Raw(option).ToHtmlString(),
                                 Value = option.ToString(),
@@ -56,7 +96,7 @@
                             <label>¿A qué te dedicas?</label>
                             <small>(Opcional)</small>
                             <br />
-                            @Html.DropDownListFor(model => model.Profession, VolunteersMiner.Helpers.WhatDoYouDo().Select(option => new SelectListItem
+                            @Html.DropDownListFor(model => model.NewPoll.Profession, VolunteersMiner.Helpers.WhatDoYouDo().Select(option => new SelectListItem
                             {
                                 Text = Html.Raw(option).ToHtmlString(),
                                 Value = option.ToString(),
@@ -67,11 +107,11 @@
                             <label id="institution"></label>
                             <small>(Opcional)</small>
                             <br />
-                            @Html.TextBoxFor(m => m.ProfessionInstitution, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.NewPoll.ProfessionInstitution, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Provincia</label> <span class="required">*</span>
-                            @Html.DropDownListFor(model => model.Province, VolunteersMiner.Helpers.GetProvinces().Select(option => new SelectListItem
+                            @Html.DropDownListFor(model => model.NewPoll.Province, VolunteersMiner.Helpers.GetProvinces().Select(option => new SelectListItem
                             {
                                 Text = Html.Raw(option).ToHtmlString(),
                                 Value = option.ToString(),
@@ -80,33 +120,61 @@
                         </div>
                         <div class="form-group">
                             <label>Área</label> <span class="required">*</span>
-                            @Html.TextBoxFor(m => m.Area, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.NewPoll.Area, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Días en qué estás interesado en colaborar</label> <span class="required">*</span>
-                            @Html.DropDownListFor(model => model.TimeToParticipate, VolunteersMiner.Helpers.GetTimes().Select(option => new SelectListItem
-                           {
-                               Text = Html.Raw(option).ToHtmlString(),
-                               Value = option.ToString(),
-                               Selected = false
-                           }), "Seleccionar una opción", new { @class = "form-control", @id = "timesList" })
+                            <div class="row">
+                                @foreach (var item in Model.MultipleChoiceParticipation)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="checkbox">
+                                            <label style="padding-left:0px">
+                                                <input type="checkbox" @if (item.Name == "Otro") { <text> id="TimeOtherOption" </text> }
+                                                       name="SelectedParticipation"
+                                                       value="@item.Name"
+                                                       @if (Model.SelectedParticipation.Contains(item.Name)) { <text> checked </text> } />
+                                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                @item.Name
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </div>
                         <div id="otherTime" class="form-group" hidden>
                             <label>Otro:</label> <span class="required">*</span>
-                            @Html.TextBoxFor(m => m.OtherTimeToParticipate, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.NewPoll.OtherTimeToParticipate, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             <label>Tipo de voluntariado en el que estás interesado</label> <span class="required">*</span>
-                            @Html.DropDownListFor(model => model.TypeOfHelp, VolunteersMiner.Helpers.GetVolunteerType().Select(option => new SelectListItem
-                           {
-                               Text = Html.Raw(option).ToHtmlString(),
-                               Value = option.ToString(),
-                               Selected = false
-                           }), "Seleccionar una opción", new { @class = "form-control", @id = "volunteerTypeList" })
+                            <div class="row">
+                                @foreach (var item in Model.MultipleChoiceHelps)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="checkbox">
+                                            <label style="padding-left:0px">
+                                                <input type="checkbox"
+                                                       name="SelectedHelps"
+                                                       value="@item.Name"
+                                                       @if (item.Name == "Otro") { <text> id="HelpOtherOption" </text> }
+                                                       @if (item.Name == "Donación en efectivo o en especie") { <text> id="HelpDonationOption" </text> }
+                                                       @if (Model.SelectedHelps.Contains(item.Name)) { <text> checked </text> } />
+                                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                @item.Name
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div id="donationVolunteerType" class="form-group" hidden>
+                            <label>Tipo de donación:</label>  <span class="required">*</span>
+                            @Html.TextBoxFor(m => m.NewPoll.DonationTypeOfHelp, new { @class = "form-control" })
                         </div>
                         <div id="otherVolunteerType" class="form-group" hidden>
                             <label>Otro:</label>  <span class="required">*</span>
-                            @Html.TextBoxFor(m => m.OtherTimeToParticipate, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.NewPoll.OtherTypeOfHelp, new { @class = "form-control" })
                         </div>
                         <div class="form-group">
                             @Html.Recaptcha()
@@ -115,7 +183,7 @@
                         <div style="text-align:center">
                             <button type="submit" class="btn btn-info">Aceptar</button>
                             &nbsp;&nbsp;
-                            <img style="display:none"  id="loading" width="25" height="25" src="~/Images/loading.gif" />
+                            <img style="display:none" id="loading" width="25" height="25" src="~/Images/loading.gif" />
                         </div>
                     }
                 </div>
@@ -127,9 +195,8 @@
 
 <script>
     $(document).ready(function () {
+        CheckOthers();
         CheckProfession();
-        CheckTime();
-        CheckVolunteerType();
 
         $('#theForm').submit(function () {
             $(':submit', this).attr('disabled', 'disabled');
@@ -148,19 +215,23 @@
             }
         }
 
-        function CheckTime() {
-            var val = $("#timesList").val();
-            if (val == 'Otro') {
+        function CheckOthers() {
+            console.log('go');
+            if ($('#TimeOtherOption').is(':checked')) {
                 $('#otherTime').show();
             }
             else {
                 $('#otherTime').hide();
             }
-        }
 
-        function CheckVolunteerType() {
-            var val = $("#volunteerTypeList").val();
-            if (val == 'Otro') {
+            if ($('#HelpDonationOption').is(':checked')) {
+                $('#donationVolunteerType').show();
+            }
+            else {
+                $('#donationVolunteerType').hide();
+            }
+
+            if ($('#HelpOtherOption').is(':checked')) {
                 $('#otherVolunteerType').show();
             }
             else {
@@ -168,16 +239,20 @@
             }
         }
 
-        $('#professionList').change(function () {
-            CheckProfession();
+        $('#TimeOtherOption').click(function () {
+            CheckOthers();
         })
 
-        $('#timesList').change(function () {
-            CheckTime()
-        });
+        $('#HelpOtherOption').click(function () {
+            CheckOthers();
+        })
 
-        $('#volunteerTypeList').change(function () {
-            CheckVolunteerType();
+        $('#HelpDonationOption').click(function () {
+            CheckOthers();
+        })
+
+        $('#professionList').change(function () {
+            CheckProfession();
         })
     });
 </script>

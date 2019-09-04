@@ -32,10 +32,11 @@ namespace DAL.Model
         public string TimeToParticipate { get; set; }
         [MaxLength(200)]
         public string OtherTimeToParticipate { get; set; }
-        [Required]
         public string TypeOfHelp { get; set; }
         [MaxLength(200)]
         public string OtherTypeOfHelp { get; set; }
+        [MaxLength(200)]
+        public string DonationTypeOfHelp { get; set; }
         [MaxLength(200)]
         public string ProfessionInstitution { get; set; }
         [MaxLength(200)]

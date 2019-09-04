@@ -1,4 +1,5 @@
-﻿using DAL.Model;
+﻿using DAL.DTOs;
+using DAL.Model;
 using DAL.Repositories;
 using reCAPTCHA.MVC;
 using System;
@@ -30,27 +31,36 @@ namespace VolunteersMiner.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var dto = new PollDTO();
+            foreach(var helpType in Helpers.GetVolunteerType())
+                dto.MultipleChoiceHelps.Add(new MultipleChoiceDto { Name = helpType, Selected = false });
+
+            foreach (var time in Helpers.GetTimes())
+                dto.MultipleChoiceParticipation.Add(new MultipleChoiceDto { Name = time, Selected = false });
+
+            return View(dto);
         }
 
         [HttpPost]
-        [CaptchaValidator]
+        //[CaptchaValidator]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Poll model)
+        public ActionResult Create(PollDTO dto)
         {
             if (ModelState.IsValid)
             {
                 var emailHelper = new EmailAddressAttribute();
-                if (emailHelper.IsValid(model.Email))
+                if (emailHelper.IsValid(dto.NewPoll.Email))
                 {
-                    model.CreatedDate = DateTime.Now;
-                    _repo.Add(model);
-                    TempData["Info"] = model.Name();
+                    dto.NewPoll.CreatedDate = DateTime.Now;
+                    dto.NewPoll.TimeToParticipate = string.Join(", ", dto.SelectedParticipation);
+                    dto.NewPoll.TypeOfHelp = string.Join(", ", dto.SelectedHelps);
+                    _repo.Add(dto.NewPoll);
+                    TempData["Info"] = dto.NewPoll.Name();
 
                     try
                     {
-                        _mailer.Thanks(model);
+                        _mailer.Thanks(dto.NewPoll);
                     }
                     catch (Exception e){
                         var hola = 2;
@@ -60,13 +70,22 @@ namespace VolunteersMiner.Controllers
                 }
                 else
                 {
+                    foreach (var helpType in Helpers.GetVolunteerType())
+                        dto.MultipleChoiceHelps.Add(new MultipleChoiceDto { Name = helpType, Selected = false });
+
+                    foreach (var time in Helpers.GetTimes())
+                        dto.MultipleChoiceParticipation.Add(new MultipleChoiceDto { Name = time, Selected = false });
                     ViewBag.ErrorMessage = "Por favor colocar un email válido";
-                    return View(model);
+                    return View(dto);
                 }
             }
+            foreach (var helpType in Helpers.GetVolunteerType())
+                dto.MultipleChoiceHelps.Add(new MultipleChoiceDto { Name = helpType, Selected = false });
 
+            foreach (var time in Helpers.GetTimes())
+                dto.MultipleChoiceParticipation.Add(new MultipleChoiceDto { Name = time, Selected = false });
             ViewBag.ErrorMessage = "Revisar los campos requeridos";
-            return View(model);
+            return View(dto);
         }
 
         public ActionResult SuccessMessage()
