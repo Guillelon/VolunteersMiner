@@ -42,7 +42,7 @@ namespace VolunteersMiner.Controllers
         }
 
         [HttpPost]
-        //[CaptchaValidator]
+        [CaptchaValidator]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Create(PollDTO dto)

@@ -21,7 +21,7 @@ namespace VolunteersMiner.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("VolunteersMinerDBContext", throwIfV1Schema: false)
         {
         }
 
