@@ -62,8 +62,8 @@ namespace VolunteersMiner.Controllers
                     {
                         _mailer.Thanks(dto.NewPoll);
                     }
-                    catch (Exception e){
-                        var hola = 2;
+                    catch{
+                        
                     }
 
                     return RedirectToAction("SuccessMessage");
