@@ -1,5 +1,6 @@
 ﻿@model List<DAL.Model.Poll>
 <div>
+    <label>N# @Model.Count de respuestas.</label>
     <table id="table" class="table table-bordered">
         <thead>
             <tr>
@@ -30,6 +31,9 @@
         </tbody>
     </table>
 </div>
+<br />
+<br />
+<br />
 
 <script>
     $('#table').DataTable({
